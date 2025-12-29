@@ -1,9 +1,9 @@
 const mongoose=require('mongoose');
 
-
+const mongouri=process.env.mongouri;
 async function connectToDB() {
     try{
-        await mongoose.connect('mongodb+srv://mayankjainiitdelhi_db_user:0f2RGByXmrIy066E@cluster0.nlrqk6c.mongodb.net/?appName=Cluster0');
+        await mongoose.connect(mongouri);
         console.log("connected to db");
     }
     catch(err){

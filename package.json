@@ -1,10 +1,11 @@
 {
+  "type": "commonjs",
   "dependencies": {
+    "dotenv": "^16.4.7",
     "express": "^5.2.1",
     "mongoose": "^9.0.2",
     "nanoid": "^5.1.6",
     "nodejs": "^0.0.0",
-    "nodemon": "^3.1.11",
-    "type": "commonjs"
+    "nodemon": "^3.1.11"
   }
 }
