@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+</head>
+<body>
+    <h1>URL Shortener</h1>
+   
+    
+    <% if (locals.listOfUrls) { %>
+        <table border="1" cellpadding="10">
+            <thead>
+                <tr>
+                    <th>Short URL</th>
+                    <th>Long URL</th>
+                    <th>Clicks</th>
+                    <th>Created Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% listOfUrls.forEach(url => { %>
+                    <tr>
+                        <td><%= url.shortId %></td>
+                        <td><%= url.redirectUrl %></td>
+                        <td><%= url.visitHistory.length %></td>
+                        <td><%= url.createdDate %></td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    <% } %>
+    <form id="shortenForm" method="POST" action="/urls" enctype="application/x-www-form-urlencoded">
+        <label for="longUrl">Enter your long URL:</label>
+        <input type="url" id="longUrl" name="Url" placeholder="https://example.com/very/long/url" required>
+        <button type="submit">Shorten URL</button>
+    </form>
+    <form id="getall" method="GET" action="/urls" enctype="application/x-www-form-urlencoded">
+        <button type="submit">
+            getall
+        </button>
+    </form>
+    <div id="result">
+         <% if (locals.id) { %>
+        <p>Your shortened URL: <%= id %></p>
+    <% } %>
+        <div id="shortUrlDisplay"></div>
+    </div>
+</body>
+</html>

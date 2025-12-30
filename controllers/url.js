@@ -10,8 +10,11 @@ async function handleGenerateShortUrl(req,res){
         shortId: shortUrl,
         redirectUrl: body.Url,
         visitHistory:[],
+        creeatedBy: req.user._id,
     });
-    return res.status(200).json('Generated Short URL: '+shortUrl);
+    const userId=req.user._id;
+    // const data= await Url.find({creeatedBy: userId});
+    return res.render("home",{id:shortUrl, listOfUrls:[]});
 }
 async function handleRedirectToLongUrl(req,res){
     const shortId=req.params.shortUrlCode;
@@ -35,8 +38,9 @@ async function handleRedirectToLongUrl(req,res){
 
 }
 async function handleGetAllData(req,res){
-    const data= await Url.find();
-    res.status(200).json(data);
+    const userId=req.user._id;
+    const data= await Url.find({creeatedBy: userId});
+    return res.render("home",{listOfUrls:data})
 }
 async function handleGetAnalytics(req,res){
     const shortId=req.params.shortUrlCode;
